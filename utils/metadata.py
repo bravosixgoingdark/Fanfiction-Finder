@@ -49,11 +49,14 @@ def ao3_metadata(query: str):
             if fic.ao3_works_name is None:
                 return Embed(description="Fanfiction not found",
                             colour=Colour.red())
+            description = fic.ao3_works_summary
+            if fic.ao3_works_rating == "Explicit":
+                description = f"||{description}||"
 
             embed = Embed(
                 title=fic.ao3_works_name,
                 url=fic.BaseUrl,
-                description=fic.ao3_works_summary,
+                description=description,
                 colour=Colour(0x272b28))
 
             if fic.ao3_works_status == "Completed":
